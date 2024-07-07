@@ -1,0 +1,39 @@
+<div class="container mx-auto my-8">
+  <h2 class="text-2xl font-bold mb-4">Lista de Productos</h2>
+  <a routerLink="/menu/productos/create" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block mt-2 mb-4">
+    Agregar
+  </a>    
+  <div class="overflow-x-auto">
+    <table id="dataTable" class="min-w-full bg-white shadow-md rounded-lg">
+      <thead>
+        <tr class="bg-gray-200 text-gray-700 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">Nombre</th>
+          <th class="py-3 px-6 text-left">Descripción</th>
+          <th class="py-3 px-6 text-left">Precio</th>
+          <th class="py-3 px-6 text-left">Stock</th>
+          <th class="py-3 px-6 text-left">SKU</th>
+          <th class="py-3 px-6 text-left">Estado</th>
+          <th class="py-3 px-6 text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        <tr *ngFor="let product of products" class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="py-3 px-6 text-left">{{ product.name }}</td>
+          <td class="py-3 px-6 text-left">{{ product.description }}</td>
+          <td class="py-3 px-6 text-left">{{ product.price }}</td>
+          <td class="py-3 px-6 text-left">{{ product.stock }}</td>
+          <td class="py-3 px-6 text-left">{{ product.sku }}</td>
+          <td class="py-3 px-6 text-left">{{ product.state ? 'Activo' : 'Inactivo' }}</td>
+          <td class="py-3 px-6 text-left">
+            <button routerLink="/menu/productos/edit/{{ product.id }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4 rounded">
+              Editar
+            </button>
+            <button (click)="deleteProduct(product.id!)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+              Eliminar
+            </button>               
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
